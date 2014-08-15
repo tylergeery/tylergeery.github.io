@@ -121,3 +121,23 @@
     from {opacity:0;}
     to {opacity:1;}
 }
+
+@media (max-wdith:500px) {
+	.main-form {
+		margin:0 auto;
+		border:0;
+	}
+
+	.main-form h2 { 
+		padding:1.5em 15px;
+	}
+	
+	/* Padding for all of the responsive input elements */
+	.main-form .pad-box {
+		/* Keep all the elements the same height since uneven heights */
+		/* can cause float problems */
+		height:120px;
+		padding-top:1.4em; 
+		padding-bottom:1.4em;
+	}
+}
