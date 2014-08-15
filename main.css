@@ -1,1 +1,122 @@
-body {background:blue;}
+/* Styles for the index.html form page */
+
+/* Outer form keep 900px as max-width to keep form skinny */
+.main-form {
+	max-width:900px; 
+	margin:20px auto; 
+	padding:20px; 
+	border:1px solid rgb(0,0,0); 
+	font-size:1.2em;
+	overflow:hidden;
+}
+
+/* Keep 15px side padding to match bootstrap col padding */
+/* This keeps it inline with the form sections */
+.main-form h2 { 
+	padding:30px 15px;
+}
+
+/* Padding for all of the responsive input elements */
+.main-form .pad-box {
+	/* Keep all the elements the same height since uneven heights */
+	/* can cause float problems */
+	height:120px;
+	padding-top:1.5em; 
+	padding-bottom:1.5em;
+}
+
+/* Inputs are always 100% width which makes them responsive to bootstrap media queries */
+.main-form input[type="text"], .main-form select { 
+	width:100%; 
+	border:1px solid rgb(0,0,0);
+	background:white;
+	font-size:24px;
+	line-height:35px;
+}
+.main-form input[type="radio"] {
+	width:50%;
+	display:inline-block;
+	background:white;
+	height: 24px;
+	background: none;
+	-webkit-appearance: none;
+	border: 1px solid rgb(0,0,0);
+	border-radius: 50%;
+	width: 24px;
+}
+.main-form input[type="radio"]:checked {
+	background:rgb(100,100,100);
+}
+
+.main-form .radio-input-label {
+	padding-left:5px;
+	line-height:35px;
+	vertical-align: top;
+}
+.main-form .radio-margin-left {
+	margin-left:30%;
+}
+
+
+/* Remove rounded Chrome border on select */
+/* HTML has extra div around select which has */
+.main-form select {
+	border:none;
+	line-height:35px;
+	/* Height is needed for select when appearance is removed */
+	height:37px;
+}
+
+.main-form .select-div {
+	border:1px solid rgb(0,0,0);
+	line-height:35px;
+}
+
+/* Red class is for *'s on form */
+/* Error class is for not valid form imputs when submitted */
+.main-form .red, .main-form .error { color:red;}
+.main-form .pad-box.error input[type="text"], .main-form .pad-box.error select,  .main-form .pad-box.error .select-div {
+	border:1px solid red;
+}
+
+.form-submit-container {
+	clear:right;
+	padding-right:20px;
+	margin-top:30px;
+}
+.form-submit {
+	width:100%;
+	background:rgb(0,0,0);
+	color:rgb(255,255,255);
+	font-size:2em;
+	padding:15px;
+	border:none;
+}
+
+.main-form .pad-box.hiding {
+	opacity:0;
+	height:0px;
+	overflow:hidden;
+	padding:0;
+}
+.showing {
+    -webkit-animation: showdown .4s; /* Chrome, Safari, Opera */
+    animation: showdown .4s;
+    opacity:1;
+    height:auto;
+    overflow:auto;
+    padding-top:1.5em; 
+	padding-bottom:1.5em;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes showdown {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+/* Standard syntax */
+@keyframes showdown {
+    from {opacity:0;}
+    to {opacity:1;}
+}

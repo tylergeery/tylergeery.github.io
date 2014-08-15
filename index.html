@@ -1,12 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="reset.css">
-	<link rel="stylesheet" href="bootstrap.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="main.css">
 </head>
 <body>
- This is the body
+ <div class="main-form row">
+
+ 	<!-- No method or action given, since there is no server  -->
+ 	<form onSubmit="formSubmit(); return false;">
+ 		<h2 class="col-xs-12"><caption>Tyler's Nifty Form</caption></h2>
+ 		<div class="col-xs-12 col-sm-6 pad-box">
+ 			<label for="user-name">Name <span class="red">*</span></label>
+ 			<input type="text" name="user-name" class="user-name" />
+ 			<span class="user-name-error"></span>
+ 		</div>
+ 		<div class="col-xs-12 col-sm-6 pad-box">
+ 			<label for="user-birth-year">Birth Year <span class="red">*</span></label>
+ 			<div class="select-div">
+ 				<select name="user-birth-year" class="user-birth-year">
+ 					<option selected="selected"></option>
+ 				</select>
+ 			</div>
+ 			<span class="user-birth-year-error"></span>
+ 		</div>
+ 		<div class="col-xs-12 col-sm-6 pad-box">
+ 			<label for="user-email">Email <span class="red">*</span></label>
+ 			<input type="text" name="user-email" class="user-email" />
+ 		</div>
+ 		<div class="col-xs-12 col-sm-6 pad-box user-ca-resident">
+ 			<label>California Resident? <span class="red">*</span></label><br />
+ 			<label for="radio">
+ 				<input type="radio" name="user-ca-resident" class="user-ca-resident-yes" value="Yes"/>
+ 				<span class="radio-input-label">Yes</span>
+ 			</label>
+ 			<label for="radio" class="radio-margin-left">
+ 				<input type="radio" name="user-ca-resident" class="user-ca-resident-no" value="No"/>
+ 				<span class="radio-input-label">No</span>
+ 			</label>
+ 		</div>
+ 		<!-- Zip Code is only available if the ca_resident yes is checked -->
+ 		<div class="col-xs-12 col-sm-6 pad-box pull-right hiding">
+ 			<label for="user-zip-code">Zip Code <span class="red">*</span></label>
+ 			<input type="text" name="user-zip-code" class="user-zip-code" />
+ 		</div>
+
+ 		<!-- Extra div Hack to fix border not moving with css animation -->
+ 		<div class="row">
+ 			<div class="pull-right col-xs-12 col-sm-6 form-submit-container">
+ 				<button class="form-submit">Submit</button>
+ 			</div>
+ 		</div>
+ 	</form>
+ </div>
+ 			
 </body>
+<script src="jquery-1.11.1.js"></script>
 <script src="main.js"></script>
 </html>
