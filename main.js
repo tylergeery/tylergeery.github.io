@@ -51,7 +51,7 @@ var formSubmit = function() {
 			$('.user-name').parent('.pad-box').addClass('error');
 			$('.user-name-error').text("Please provide a name");
 			exceptions++;
-			$('.user-name').on("keypress", function(){
+			$('.user-name').on("keyup", function(){
 				if($('.user-name').val()) {
 					$(this).parent('.pad-box').removeClass('error');
 					$('.user-name-error').text(' ');
@@ -79,7 +79,7 @@ var formSubmit = function() {
 			$('.user-email').parent('.pad-box').addClass('error');
 			$('.user-email-error').text("Please provide a valid email");
 			exceptions++;
-			$('.user-email').on("keypress", function(){
+			$('.user-email').on("keyup", function(){
 				if($('.user-email').val().match(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/)) {
 					$(this).parent('.pad-box').removeClass('error');
 					$('.user-email-error').text(' ');
@@ -93,9 +93,10 @@ var formSubmit = function() {
 			$('.user-zip-code').parent('.pad-box').addClass('error');
 			$('.user-zip-code-error').text("Please provide a valid zip code");
 			exceptions++;
-			$('.user-zip-code').on("keypress", function(){
+			$('.user-zip-code').on("keyup", function(){
 				zip_string = $('.user-zip-code').val() || '';
-				if($('.user-ca-resident-yes')[0].checked && zip_string.match(/^\d{5}(-\d{4})?(?!-)$/)) {
+				console.log(zip_string.match(/^\d{5}(-\d{4})?(?!-)$/));
+				if(zip_string.match(/^\d{5}(-\d{4})?(?!-)$/)) {
 					$(this).parent('.pad-box').removeClass('error');
 					$('.user-zip-code-error').text(' ');
 				}
