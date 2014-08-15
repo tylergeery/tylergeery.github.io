@@ -28,11 +28,6 @@ $(document).ready(function() {
          .text(i)); 
 	}
 
-
-	// Removed webkit form functionality, so need to manually track new select clicks
-	$('.option-select').click(function() {
-		window.alert("something:",$(this.val()));
-	});
 	
 	// Show zip code box if CA Resident is selected
 	$('.user-ca-resident-yes').click(function() {
@@ -49,44 +44,70 @@ $(document).ready(function() {
 
 var formSubmit = function() {
 	
+		var exceptions = 0;
 		
 		// Simple checking done to see if name has a value
 		if(!$('.user-name').val()) {
 			$('.user-name').parent('.pad-box').addClass('error');
 			$('.user-name-error').text("Please provide a name");
+			exceptions++;
 			$('.user-name').on("keypress", function(){
 				if($('.user-name').val()) {
-					window.alert('clicked');
 					$(this).parent('.pad-box').removeClass('error');
 					$('.user-name-error').text(' ');
 				}
 			});
 		}
 
-		window.alert("birth year ", $('select[name="user-birth-year"]').text());
 		// Check to see if birth year is <= 2001
-		if(!parseInt($('select[name="user-birth-year"]').text()) <= 2001) {
-			$('.user-birth-year').parent('.pad-box').addClass('error');
+		var birth_year = $('select[name="user-birth-year"]')[0].value || 2014;
+		if( birth_year > 2001) {
+			$('.user-birth-year-error').parent('.pad-box').addClass('error');
 			$('.user-birth-year-error').text("Birth year must be >= 2001");
-			$('.user-birth-year').on("keypress", function(){
-				if($('.user-birth-year').val()) {
-					$('.user-birth-year').parent('.pad-box').removeClass('error');
+			exceptions++;
+			$('select[name="user-birth-year"]').change(function(){
+				birth_year = $('select[name="user-birth-year"]')[0].value || 2014;
+				if(birth_year <= 2001) {
+					$('.user-birth-year-error').parent('.pad-box').removeClass('error');
 					$('.user-birth-year-error').text(' ');
 				}
 			});
-		}  
+		} 
+
+		// Check to see if email is valid
+		if(!$('.user-email').val().match(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/)) {
+			$('.user-email').parent('.pad-box').addClass('error');
+			$('.user-email-error').text("Please provide a valid email");
+			exceptions++;
+			$('.user-email').on("keypress", function(){
+				if($('.user-email').val().match(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/)) {
+					$(this).parent('.pad-box').removeClass('error');
+					$('.user-email-error').text(' ');
+				}
+			});
+		} 
 
 		// Regex to check for five digits with a possible four more digits
 		var zip_string = $('.user-zip-code').val() || '';
-		if(!zip_string.match(/^\d{5}(-\d{4})?(?!-)$/)) {
-			$('user-zip-code').addClass('error');
+		if($('.user-ca-resident-yes')[0].checked && !zip_string.match(/^\d{5}(-\d{4})?(?!-)$/)) {
+			$('.user-zip-code').parent('.pad-box').addClass('error');
 			$('.user-zip-code-error').text("Please provide a valid zip code");
+			exceptions++;
+			$('.user-zip-code').on("keypress", function(){
+				zip_string = $('.user-zip-code').val() || '';
+				if($('.user-ca-resident-yes')[0].checked && zip_string.match(/^\d{5}(-\d{4})?(?!-)$/)) {
+					$(this).parent('.pad-box').removeClass('error');
+					$('.user-zip-code-error').text(' ');
+				}
+			});
+		}
+
+		if(exceptions === 0) {
+			// Get rid of form and show success page
+			$('.main-form').html("<h1 class='center'>Great Success!</h1><h3 class='center'>One of our team members will contact you shortly.</h3>");
+			// Validations pass... Send off to the server
 		}
 
 
-		// Get rid of form and show success page
-
-		// Validations pass... Send off to the server
-		
 
 }

@@ -1,5 +1,5 @@
 /* Styles for the index.html form page */
-
+.center {text-align:center;}
 /* Outer form keep 900px as max-width to keep form skinny */
 .main-form {
 	max-width:900px; 
@@ -8,6 +8,7 @@
 	border:1px solid rgb(0,0,0); 
 	font-size:1.2em;
 	overflow:hidden;
+	min-height:350px;
 }
 
 /* Keep 15px side padding to match bootstrap col padding */
@@ -75,7 +76,7 @@
 /* Red class is for *'s on form */
 /* Error class is for not valid form imputs when submitted */
 .main-form .red, .main-form .error { color:red;}
-.main-form .pad-box.error input[type="text"], .main-form .pad-box.error select,  .main-form .pad-box.error .select-div {
+.main-form .pad-box.error input[type="text"],  .main-form .pad-box.error .select-div {
 	border:1px solid red;
 }
 
